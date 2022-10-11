@@ -1,0 +1,11 @@
+#trigger-nextup {
+    background: black;
+    position: fixed;
+    z-index: 999;
+    top: 25px;
+    right: 25px;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
