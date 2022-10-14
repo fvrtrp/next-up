@@ -1,11 +1,35 @@
 #trigger-nextup {
     background: black;
     position: fixed;
-    z-index: 999;
-    top: 25px;
+    z-index: 9999;
+    top: 50px;
     right: 25px;
     border-radius: 5px;
     color: white;
     padding: 5px 10px;
     cursor: pointer;
+}
+.popupContainer-nextup {
+    background: black;
+    position: fixed;
+    z-index: 9999;
+    bottom: 50px;
+    right: 25px;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.popupClose-nextup {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
