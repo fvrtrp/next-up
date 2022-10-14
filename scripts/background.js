@@ -23,6 +23,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 function handleOnclick(data) {
     console.log(`clicked`, data, storageProxy)
+    data.id = storageProxy.data.length>0 ? storageProxy.data[storageProxy.data.length-1].id + 1 : 0
     storageProxy.data.push(data)
     //add to local storage
     storage('update', storageProxy)

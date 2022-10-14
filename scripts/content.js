@@ -27,11 +27,24 @@ function openMenu() {
     popupContainer = document.createElement('div')
     popupContainer.className = "popupContainer-nextup"
     console.log(storageProxy)
-    for(let item of storageProxy['data']) {
-        const popupItem = document.createElement('div')
-        popupItem.className = "popupItem"
-        popupItem.innerHTML = item.linkUrl
-        popupContainer.appendChild(popupItem)
+    if(storageProxy['data'].length===0) {
+        const popupNoData = document.createElement('div')
+        popupNoData.className = "popupNoData-nextup"
+        popupNoData.innerHTML = "Right click on links to see them here xoxo."
+        popupContainer.appendChild(popupNoData)
+    }
+    else {
+        for(let item of storageProxy['data']) {
+            const popupItem = document.createElement('div')
+            popupItem.className = "popupItem-nextup"
+            const popupDelete = document.createElement('div')
+            popupDelete.className = "popupDelete"
+            popupDelete.innerHTML = 'x'
+            popupDelete.addEventListener('click', ()=>deleteItem(item.id))
+            popupItem.innerHTML = item.linkUrl
+            popupItem.appendChild(popupDelete)
+            popupContainer.appendChild(popupItem)
+        }
     }
     popupClose = document.createElement('div')
     popupClose.className = "popupClose-nextup"
@@ -39,6 +52,12 @@ function openMenu() {
     popupContainer.appendChild(popupClose)
     popupClose.addEventListener('click', ()=>closeMenu())
     document.body.appendChild(popupContainer)
+}
+
+function deleteItem(id) {
+    const newItems = storageProxy.data.filter(i => i.id !== id)
+    const newData = {...storageProxy, data: newItems}
+    storage('update', newData)
 }
 
 function closeMenu() {
@@ -63,7 +82,7 @@ function storage(action, data) {
             })
             break
         }
-        case 'add': {
+        case 'update': {
             chrome.storage.local.set({'nextUp': data}, function() {
                 console.log('Value is set to ' + data)
             })
