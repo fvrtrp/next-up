@@ -34,6 +34,10 @@ function openMenu() {
         popupContainer.appendChild(popupNoData)
     }
     else {
+        const goNext = document.createElement('div')
+        goNext.innerText = 'Next'
+        goNext.addEventListener('click', () => playNext())
+        popupContainer.appendChild(goNext)
         for(let item of storageProxy['data']) {
             const popupItem = document.createElement('div')
             popupItem.className = "popupItem-nextup"
@@ -42,6 +46,10 @@ function openMenu() {
             popupDelete.innerHTML = 'x'
             popupDelete.addEventListener('click', ()=>deleteItem(item.id))
             popupItem.innerHTML = item.linkUrl
+            // const go = document.createElement('div')
+            // go.innerText = 'go'
+            // go.addEventListener('click', ()=>deleteItem(item.id))
+            // popupItem.appendChild(go)
             popupItem.appendChild(popupDelete)
             popupContainer.appendChild(popupItem)
         }
@@ -52,6 +60,12 @@ function openMenu() {
     popupContainer.appendChild(popupClose)
     popupClose.addEventListener('click', ()=>closeMenu())
     document.body.appendChild(popupContainer)
+}
+
+function playNext() {
+    const firstItem = storageProxy.data.shift()
+    storage('update', storageProxy)
+    window.location.href = firstItem.linkUrl
 }
 
 function deleteItem(id) {

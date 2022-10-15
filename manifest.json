@@ -8,7 +8,8 @@
         "js": ["scripts/content.js"],
         "matches": [
           "https://stackoverflow.com/*",
-          "https://developer.chrome.com/*"
+          "https://developer.chrome.com/*",
+          "https://youtube.com/*"
         ],
         "css": ["scripts/content.css"]
       }
